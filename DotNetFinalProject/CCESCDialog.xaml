@@ -1,0 +1,23 @@
+﻿<Window x:Class="DotNetFinalProject.CCESCDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotNetFinalProject"
+        mc:Ignorable="d"
+        Title="CCESCDialog" Height="374.427" Width="611.069">
+    <Grid Margin="0,0,0,-1">
+        <Label FontSize="20" Content="Course Title:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Width="169" Margin="21,25,0,0"/>
+        <Label FontSize="20" Content="Course Fee:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Width="169" Margin="21,108,0,0"/>
+        <Label FontSize="20" Content="Date:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="169" Margin="367,105,0,0"/>
+        <TextBox x:Name="courseFeeTxt" FontSize="20" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="327" Margin="21,147,0,0"/>
+        <TextBox x:Name="dateTxt" FontSize="20" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Margin="369,147,0,0"/>
+        <Button x:Name="cancelBtn" FontSize="20" Content="Cancel" HorizontalAlignment="Left" Height="54" Margin="21,266,0,0" VerticalAlignment="Top" Width="195" Click="CancelBtn_Click"/>
+        <Button x:Name="finalizeBtn" FontSize="20" Content="Finalize" HorizontalAlignment="Left" Height="54" Margin="241,266,0,0" VerticalAlignment="Top" Width="340" Click="Button_Click"/>
+        <CheckBox x:Name="withVatCheckBox" FontSize="20" Content="With-VAT" HorizontalAlignment="Left" Margin="21,217,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label FontSize="20" Content="CTRL No:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="39" Width="169" Margin="369,25,0,0"/>
+        <TextBox x:Name="controlNoTxt" FontSize="20" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Margin="369,64,0,0"/>
+        <ComboBox x:Name="courseList" FontSize="20" HorizontalAlignment="Left" Margin="21,64,0,0" VerticalAlignment="Top" Width="327" Height="39" SelectionChanged="CourseList_SelectionChanged"/>
+
+    </Grid>
+</Window>
