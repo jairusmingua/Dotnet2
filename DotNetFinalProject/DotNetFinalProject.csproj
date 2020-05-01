@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MapuaUniversityDataSet.cs">
+      <DependentUpon>MapuaUniversityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MapuaUniversityDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,12 +21,34 @@ namespace DotNetFinalProject
     /// </summary>
     public partial class View : Window
     {
-        MapuaUniversityDataSet Students = new MapuaUniversityDataSet();
+        MapuaUniversityDataSet mapua = new MapuaUniversityDataSet();
         public View()
         {
             InitializeComponent();
-            var query = Students.ViewStudent;
-            datagrid.ItemsSource = query.ToList();
+            using (var conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DotNetFinalProject.Properties.Settings.MapuaUniversity"].ConnectionString))
+            {
+                var command = new SqlCommand("dbo.ViewStudent", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var dataAdapter = new SqlDataAdapter(command);
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                DataTable dt = new DataTable();
+                dataAdapter.Fill(dt);
+                datagrid.IsReadOnly = true;
+                datagrid.ItemsSource = dt.DefaultView;
+                datagrid.SelectionChanged += Datagrid_SelectionChanged;
+
+            }
+        }
+
+        private void Datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var items in datagrid.SelectedItems)
+            {
+
+                Console.Write(items);
+            }
+            Console.WriteLine();
         }
     }
 }
