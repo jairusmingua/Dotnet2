@@ -95,6 +95,10 @@ namespace DotNetFinalProject
             studentTxt.Clear();
         }
 
-        
+        private void AdminBtn_Click(object sender, RoutedEventArgs e)
+        {
+            View view = new View();
+            view.Show();
+        }
     }
 }
