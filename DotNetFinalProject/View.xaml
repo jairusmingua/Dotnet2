@@ -32,7 +32,7 @@
         <Label x:Name="courseLbl" HorizontalAlignment="Left" Margin="622,256,0,0" VerticalAlignment="Top" Height="41" Width="140"/>
         <Label x:Name="courseFeeLbl" HorizontalAlignment="Left" Margin="588,297,0,0" VerticalAlignment="Top" Height="41" Width="174"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="-468,256,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Delete All " HorizontalAlignment="Left" Height="24" Margin="534,359,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button Content="Delete All " HorizontalAlignment="Left" Height="24" Margin="534,359,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click_1"/>
         <Button Content="Delete Selected" HorizontalAlignment="Left" Height="24" Margin="643,359,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
 
     </Grid>

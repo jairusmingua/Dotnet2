@@ -67,6 +67,7 @@ namespace DotNetFinalProject.ViewModel
                 con.Dispose();
             }
         }
+       
         public Student SearchStudent(string query)
         {
 

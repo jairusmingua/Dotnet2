@@ -100,5 +100,34 @@ namespace DotNetFinalProject
             student.RefreshList();
             student.SearchStudent(query.Text);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure to delete this item", "Delete Selected", MessageBoxButton.YesNoCancel);
+            if (result.ToString() == "Yes")
+            {
+
+              
+                    try
+                    {
+                        con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DotNetFinalProject.Properties.Settings.MapuaUniversity"].ConnectionString);
+                        cmd = new SqlCommand("dbo.DeleteAll", con);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        student.RefreshList();
+                        student.FillList();
+                        con.Close();
+                    }
+                
+            }
+        }
     }
 }
