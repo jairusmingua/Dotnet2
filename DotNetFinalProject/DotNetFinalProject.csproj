@@ -74,6 +74,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MapuaUniversityDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Student.cs" />
+    <Compile Include="StudentViewModel.cs" />
     <Compile Include="View.xaml.cs">
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>

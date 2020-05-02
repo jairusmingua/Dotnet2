@@ -13,7 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using DotNetFinalProject.Model;
+using DotNetFinalProject.ViewModel;
 namespace DotNetFinalProject
 {
     /// <summary>
@@ -21,34 +22,83 @@ namespace DotNetFinalProject
     /// </summary>
     public partial class View : Window
     {
-        MapuaUniversityDataSet mapua = new MapuaUniversityDataSet();
+
+        StudentViewModel student;
+        SqlConnection con;
+        SqlCommand cmd;
+        int selectedItem = -1;
         public View()
         {
             InitializeComponent();
-            using (var conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DotNetFinalProject.Properties.Settings.MapuaUniversity"].ConnectionString))
+            student = new StudentViewModel();
+            lstBox.DataContext = student;
+        }
+
+        private void lstBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+            if (lstBox.DataContext != null)
             {
-                var command = new SqlCommand("dbo.ViewStudent", conn);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+                try
+                {
 
-                var dataAdapter = new SqlDataAdapter(command);
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                DataTable dt = new DataTable();
-                dataAdapter.Fill(dt);
-                datagrid.IsReadOnly = true;
-                datagrid.ItemsSource = dt.DefaultView;
-                datagrid.SelectionChanged += Datagrid_SelectionChanged;
+                    var item = (ListBox)sender;
+                    Student selectedStudent =student.SelectedItem((Student)item.SelectedItem);
+                    if (selectedStudent != null)
+                    {
 
+                        this.selectedItem = selectedStudent.ID;
+                        nameLbl.Content = selectedStudent.Name;
+                        emailLbl.Content = selectedStudent.Email;
+                        phoneLbl.Content = selectedStudent.PhoneNo;
+                        officeLbl.Content = selectedStudent.OfficeNo;
+                        courseLbl.Content = selectedStudent.CourseTitle;
+                        courseFeeLbl.Content = selectedStudent.CourseFee;
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
 
-        private void Datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var items in datagrid.SelectedItems)
+            var result =MessageBox.Show("Are you sure to delete this item", "Delete Selected", MessageBoxButton.YesNoCancel);
+            if (result.ToString() == "Yes")
             {
 
-                Console.Write(items);
+                if (selectedItem != -1)
+                {
+                    try
+                    {
+                        con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DotNetFinalProject.Properties.Settings.MapuaUniversity"].ConnectionString);
+                        cmd = new SqlCommand("dbo.DeleteStudent", con);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", selectedItem);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        student.RefreshList();
+                        student.FillList();
+                        con.Close();
+                    }
+                }
             }
-            Console.WriteLine();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var query = (TextBox)sender;
+            student.RefreshList();
+            student.SearchStudent(query.Text);
         }
     }
 }

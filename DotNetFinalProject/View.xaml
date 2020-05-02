@@ -6,8 +6,34 @@
         xmlns:local="clr-namespace:DotNetFinalProject"
         mc:Ignorable="d"
         Title="View" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="datagrid" HorizontalAlignment="Left" Height="305" Margin="26,51,0,0" VerticalAlignment="Top" Width="734"/>
+    <Grid Margin="0,0,20,13">
+        <ListBox Name="lstBox" ItemsSource="{Binding student}" SelectionChanged="lstBox_SelectionChanged" Background="#fff" Margin="41,92,265,23">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                        <TextBlock Text="{Binding StudentID}" Margin="10" FontWeight="Bold"/>
+                        <TextBlock Width="150px" Text="{Binding Name}" Margin="10" TextAlignment="Left"/>
+                        <TextBlock Width="150px" Text="{Binding CourseTitle}" Margin="10" TextAlignment="Left" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="523,92,0,0" VerticalAlignment="Top" Height="41" Width="51"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="523,133,0,0" VerticalAlignment="Top" Height="41" Width="51"/>
+        <Label Content="Phone No.:" HorizontalAlignment="Left" Margin="523,174,0,0" VerticalAlignment="Top" Height="41" Width="75"/>
+        <Label Content="Office No.:" HorizontalAlignment="Left" Margin="523,215,0,0" VerticalAlignment="Top" Height="41" Width="75"/>
+        <Label Content="Course Enrolled:" HorizontalAlignment="Left" Margin="523,256,0,0" VerticalAlignment="Top" Height="41" Width="99"/>
+        <Label Content="Course Fee:" HorizontalAlignment="Left" Margin="523,297,0,0" VerticalAlignment="Top" Height="41" Width="75"/>
+        <TextBox FontSize="20" HorizontalAlignment="Left" Height="35" Margin="41,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314" TextChanged="TextBox_TextChanged"/>
+        <Label x:Name="nameLbl"  HorizontalAlignment="Left" Margin="560,92,0,0" VerticalAlignment="Top" Height="41" Width="202"/>
+        <Label x:Name="emailLbl" HorizontalAlignment="Left" Margin="557,133,0,0" VerticalAlignment="Top" Height="41" Width="205"/>
+        <Label x:Name="phoneLbl" HorizontalAlignment="Left" Margin="586,174,0,0" VerticalAlignment="Top" Height="41" Width="176"/>
+        <Label x:Name="officeLbl" HorizontalAlignment="Left" Margin="586,215,0,0" VerticalAlignment="Top" Height="41" Width="176"/>
+        <Label x:Name="courseLbl" HorizontalAlignment="Left" Margin="622,256,0,0" VerticalAlignment="Top" Height="41" Width="140"/>
+        <Label x:Name="courseFeeLbl" HorizontalAlignment="Left" Margin="588,297,0,0" VerticalAlignment="Top" Height="41" Width="174"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="-468,256,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Delete All " HorizontalAlignment="Left" Height="24" Margin="534,359,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button Content="Delete Selected" HorizontalAlignment="Left" Height="24" Margin="643,359,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
 
     </Grid>
 </Window>
